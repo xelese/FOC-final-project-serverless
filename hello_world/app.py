@@ -34,7 +34,8 @@ def lambda_handler(event, context):
     rekognition = boto3.client('rekognition')
 
     # Create sns client
-    # sns = boto3.client('sns')
+    sns = boto3.client('sns')
+    sns_arn = ''
 
     try:
         # get the data from event.
@@ -57,9 +58,7 @@ def lambda_handler(event, context):
         add_labels_image(s3_bucket_name, s3_key, rekognition_response, s3, object_name)
 
         # send the message that the topic has been successfully published
-        # sns.publish(
-        #     TopicArn=os.getenv('sns_arn'),
-        #     Message='Process Successful')
+        sns.publish(TopicArn=sns_arn, Message='Process Successful')
 
         # return positive
         return {
@@ -71,9 +70,7 @@ def lambda_handler(event, context):
 
     except:
         # send the message that the topic has been successfully published
-        # sns.publish(
-        #     TopicArn=os.getenv('sns_arn'),
-        #     Message='Process Successful')
+        sns.publish(TopicArn=sns_arn, Message='Process Failed')
 
         # return positive
         return {
