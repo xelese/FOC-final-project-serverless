@@ -35,7 +35,7 @@ def lambda_handler(event, context):
 
     # Create sns client
     sns = boto3.client('sns')
-    sns_arn = ''
+    sns_arn = 'arn:aws:sns:us-east-1:404670312311:notify-qa-group'
 
     try:
         # get the data from event.
@@ -58,7 +58,7 @@ def lambda_handler(event, context):
         add_labels_image(s3_bucket_name, s3_key, rekognition_response, s3, object_name)
 
         # send the message that the topic has been successfully published
-        sns.publish(TopicArn=sns_arn, Message='Process Successful')
+        sns.publish(TopicArn=sns_arn, Message='Process Successful', MessageStructure='json')
 
         # return positive
         return {
