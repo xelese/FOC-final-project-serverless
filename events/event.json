@@ -1,0 +1,39 @@
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-east-1",
+      "eventTime": "2020-12-14T06:11:11.173Z",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "AWS:AIDAV4OB2553UQXVCRYC5"
+      },
+      "requestParameters": {
+        "sourceIPAddress": "146.115.91.238"
+      },
+      "responseElements": {
+        "x-amz-request-id": "4BB6EAD0DC74DF64",
+        "x-amz-id-2": "C7b2r4J9gbOzDpWCzKghqN8IpzKjWCnCP/MveOS2zeU81rZj13AYjrRGxhCztHl53yhVmw54TfQWN8E62XmoOYlzxDk8/W8H"
+      },
+      "s3": {
+        "s3SchemaVersion": "1.0",
+        "configurationId": "send-notification-on-upload-to-raw-images",
+        "bucket": {
+          "name": "company-x-images",
+          "ownerIdentity": {
+            "principalId": "A2DDDXZH0L4QBS"
+          },
+          "arn": "arn:aws:s3:::company-x-images"
+        },
+        "object": {
+          "key": "raw-images/luna_1.jpg",
+          "size": 51758,
+          "eTag": "63f6d0c845a9707152392aef816eb20d",
+          "versionId": "BJb7_ZrHex1ecJKjITDYCI4M92760Y0t",
+          "sequencer": "005FD7020F239FFFF2"
+        }
+      }
+    }
+  ]
+}
