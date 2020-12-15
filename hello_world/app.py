@@ -88,6 +88,12 @@ def lambda_handler(event, context):
 
 
 def verify_product_golden_retriever(response):
+    """
+    This function checks if there is exactly one golden retriever in the image provided. The recognition depends on how
+    well AWS rekognition deals with the image labels.
+    :param response: rekognition labels to verify data.
+    :return: true or false
+    """
     ver1 = False
     ver2 = False
     for label in response['Labels']:
