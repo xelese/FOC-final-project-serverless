@@ -55,19 +55,19 @@ def lambda_handler(event, context):
 
         # call the function that checks if there was exactly one instance of a golden retriever.
         if verify_product_golden_retriever(rekognition_response):
-            # call the function to save the data as a text file from the input image
-            save_rekognition_data(object_name, rekognition_response, s3, s3_bucket_name)
-
-            # call the function to find labels from image, create a new image and upload it to s3
-            add_labels_image(s3_bucket_name, s3_key, rekognition_response, s3, object_name)
-
             # send the message that the topic has been successfully published
-            sns.publish(TopicArn=sns_arn, Message='Verification Successful')
+            sns.publish(TopicArn=sns_arn, Message='Verification Successful file: ' + object_name)
 
         # Otherwise send an sns that says the process failed
         else:
             # send the message that the topic has been successfully published
-            sns.publish(TopicArn=sns_arn, Message='Verification Failed')
+            sns.publish(TopicArn=sns_arn, Message='Verification Failed file: ' + object_name)
+
+        # call the function to save the data as a text file from the input image
+        save_rekognition_data(object_name, rekognition_response, s3, s3_bucket_name)
+
+        # call the function to find labels from image, create a new image and upload it to s3
+        add_labels_image(s3_bucket_name, s3_key, rekognition_response, s3, object_name)
 
         # return positive response
         return {
